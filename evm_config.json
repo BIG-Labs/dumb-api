@@ -1,0 +1,36 @@
+{
+  "AVALANCHE": {
+    "tokens": [
+      {
+        "address": "0xB97EF9Ef8734C71904D8002F8b6Bc66Dd9c48a6E",
+        "symbol": "USDC",
+        "name": "USD Coin",
+        "token_home": "0x698044F6CC7186D1e2dbEF130d20Dc6dfbA9ecC5",
+        "token_remote":"0x1BB241dF1B33a9A5CABB63d81Ef0485c17aa0EB3"
+      },
+      {
+        "address": "0xb31f66aa3c1e785363f0875a1b74e27b85fd66c7",
+        "symbol": "WAVAX",
+        "name": "Wrapped AVAX",
+        "token_home": "",
+        "token_remote":""
+      }
+    ],
+    "chainId": 43114,
+    "UniswapV3": {
+      "factories": ["0x740b1c1de25031c31ff4fc9a62f554a55cdc1bad"]
+    }
+  },
+  "COQNET": {
+    "tokens": [
+      {
+        "address": "0x420fca0121dc28039145009570975747295f2329",
+        "symbol": "USDC",
+        "name": "USD Coin",
+        "token_home": "0x420fca0121dc28039145009570975747295f2329",
+        "token_remote": "0x1BB241dF1B33a9A5CABB63d81Ef0485c17aa0EB3"
+      }
+    ],
+    "chainId": 42069
+  }
+}

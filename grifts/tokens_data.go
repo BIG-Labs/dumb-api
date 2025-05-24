@@ -1,0 +1,72 @@
+package grifts
+
+import (
+	"fmt"
+	"log"
+	"time"
+
+	"github.com/0x7183/unifi-backend/config"
+	"github.com/0x7183/unifi-backend/internal/models"
+	"github.com/0x7183/unifi-backend/internal/services"
+	"github.com/gobuffalo/grift/grift"
+	"github.com/gofrs/uuid"
+)
+
+var _ = grift.Namespace("tokens", func() {
+	grift.Desc("seed", "Seeds or updates the tokens data")
+	grift.Add("seed", func(c *grift.Context) error {
+		log.Println("Starting tokens data update...")
+
+		glacierService := services.NewGlacierAPIService()
+		coingeckoService := services.NewCoinGeckoService()
+		now := time.Now()
+
+		for chainName, chainConfig := range config.EVMConfig {
+			log.Printf("Processing chain: %s", chainName)
+
+			for _, tokenConfig := range chainConfig.Tokens {
+				log.Printf("Processing token: %s (%s)", tokenConfig.Symbol, tokenConfig.Address)
+
+				tokenInfo, err := glacierService.GetTokenInfo(chainConfig.ChainId, tokenConfig.Address)
+				if err != nil {
+					log.Printf("Failed to fetch token info for %s: %v", tokenConfig.Address, err)
+					continue
+				}
+
+				var iconURL string
+				if tokenInfo.LogoAsset != nil {
+					iconURL = tokenInfo.LogoAsset.ImageUri
+				}
+
+				price, err := coingeckoService.GetTokenPrice(chainName, tokenConfig.Address)
+				if err != nil {
+					log.Printf("Failed to fetch token price for %s: %v", tokenConfig.Address, err)
+					continue
+				}
+
+				chainIDStr := fmt.Sprintf("%d", chainConfig.ChainId)
+				token := models.Token{
+					ID:        uuid.Must(uuid.NewV4()),
+					Address:   tokenConfig.Address,
+					ChainID:   chainIDStr,
+					Icon:      iconURL,
+					Name:      tokenConfig.Name,
+					Symbol:    tokenConfig.Symbol,
+					Price:     price,
+					Decimals:  tokenInfo.Decimals,
+					UpdatedAt: now,
+				}
+
+				err = models.DB.Create(&token)
+				if err != nil {
+					log.Printf("Failed to create token %s: %v", tokenConfig.Address, err)
+					continue
+				}
+				log.Printf("Successfully created new token: %s (%s) with price %v", token.Symbol, token.Name, token.Price)
+			}
+		}
+
+		log.Println("Tokens data update completed!")
+		return nil
+	})
+})
