@@ -1,0 +1,15 @@
+services:
+  dumb-api-init:
+    container_name: dumb-api-init
+    build: ./dumb-api
+    command: bash -c "soda migrate up -e production"
+    environment:
+      ENV: production
+      DATABASE_URL: postgres://postgres:password@host.docker.internal:5432/avalanche_hackaton_development?sslmode=disable
+  dumb-api:
+    container_name: dumb-api
+    build: ./dumb-api
+    command: bash -c "./app"
+    environment:
+      ENV: production
+      DATABASE_URL: postgres://postgres:password@host.docker.internal:5432/avalanche_hackaton_development?sslmode=disable
