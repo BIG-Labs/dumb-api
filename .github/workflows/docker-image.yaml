@@ -7,42 +7,11 @@ on:
     branches: ["main"]
 
 jobs:
-  test:
-    runs-on: ubuntu-latest
-    services:
-      postgres:
-        image: postgres:13
-        env:
-          POSTGRES_PASSWORD: password
-        ports:
-          - 5432:5432
-        options: >-
-          --health-cmd="pg_isready -U postgres"
-          --health-interval=10s
-          --health-timeout=5s
-          --health-retries=5
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Setup Go
-        uses: actions/setup-go@v4
-        with:
-          go-version: "1.23.4"
-
-      - name: Install Buffalo
-        run: go install github.com/gobuffalo/cli/cmd/buffalo@latest
-
-      - name: Run Tests
-        working-directory: ./avalanche_spoofer
-        run: buffalo test
-
-  build-spoofer:
-    needs: test
+  build-dumb-api:
     runs-on: ubuntu-latest
     env:
-      REPO: "avalanche-spoofer"
-      CONTEXT_PATH: "./avalanche_spoofer"
+      REPO: "dumb-api"
+      CONTEXT_PATH: "./dumb-api"
       REGISTRY: "${{ vars.REGISTRY }}"
       REGISTRY_PASSWORD: "${{ secrets.REGISTRY_PASSWORD }}"
       REGISTRY_USERNAME: "${{ secrets.REGISTRY_USERNAME }}"

@@ -25,8 +25,8 @@ RUN apk add --no-cache ca-certificates
 WORKDIR /bin/
 
 COPY --from=builder /bin/app .
-COPY --from=builder src/avalanche/migrations ./migrations
-COPY --from=builder src/avalanche/database.yml .
+COPY --from=builder src/dumb-api/migrations ./migrations
+COPY --from=builder src/dumb-api/database.yml .
 
 # Install the soda cli
 RUN go install github.com/gobuffalo/pop/v6/soda@latest
