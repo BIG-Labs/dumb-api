@@ -3,6 +3,7 @@ package models
 import (
 	"encoding/json"
 	"time"
+
 	"github.com/gobuffalo/pop/v6"
 	"github.com/gobuffalo/validate/v3"
 	"github.com/gobuffalo/validate/v3/validators"
@@ -11,15 +12,15 @@ import (
 
 // Token represents a row in the tokens table
 type Token struct {
-	ID              uuid.UUID `json:"id" db:"id"`
-	Address         string    `json:"address" db:"address"`
-	ChainID         string    `json:"chainId" db:"chain_id"`
-	Price           float64   `json:"price" db:"price"`
-	Icon            string    `json:"icon" db:"icon"`
-	Name            string    `json:"name" db:"name"`
-	Symbol          string    `json:"symbol" db:"symbol"`
-	Decimals        int       `json:"decimals" db:"decimals"`
-	UpdatedAt       time.Time `json:"updatedAt" db:"updated_at"`
+	ID        uuid.UUID `json:"id" db:"id"`
+	Address   string    `json:"address" db:"address"`
+	ChainID   string    `json:"chainId" db:"chain_id"`
+	Price     float64   `json:"price" db:"price"`
+	Icon      string    `json:"icon" db:"icon"`
+	Name      string    `json:"name" db:"name"`
+	Symbol    string    `json:"symbol" db:"symbol"`
+	Decimals  int       `json:"decimals" db:"decimals"`
+	UpdatedAt time.Time `json:"updatedAt" db:"updated_at"`
 }
 
 // String returns a JSON representation of Token

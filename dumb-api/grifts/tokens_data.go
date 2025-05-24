@@ -44,11 +44,11 @@ var _ = grift.Namespace("tokens", func() {
 					continue
 				}
 
-				chainIDStr := fmt.Sprintf("%d", chainConfig.ChainId)
+				// Create a new token record for each price update
 				token := models.Token{
 					ID:        uuid.Must(uuid.NewV4()),
 					Address:   tokenConfig.Address,
-					ChainID:   chainIDStr,
+					ChainID:   fmt.Sprintf("%d", chainConfig.ChainId),
 					Icon:      iconURL,
 					Name:      tokenConfig.Name,
 					Symbol:    tokenConfig.Symbol,
@@ -57,12 +57,13 @@ var _ = grift.Namespace("tokens", func() {
 					UpdatedAt: now,
 				}
 
+				// Create a new record for each price update
 				err = models.DB.Create(&token)
 				if err != nil {
-					log.Printf("Failed to create token %s: %v", tokenConfig.Address, err)
+					log.Printf("Failed to create token record %s: %v", tokenConfig.Address, err)
 					continue
 				}
-				log.Printf("Successfully created new token: %s (%s) with price %v", token.Symbol, token.Name, token.Price)
+				log.Printf("Successfully created new token price record: %s (%s) with price %v at %v", token.Symbol, token.Name, token.Price, now)
 			}
 		}
 

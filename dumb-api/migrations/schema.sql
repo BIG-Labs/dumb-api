@@ -36,7 +36,7 @@ CREATE TABLE public.chain_states (
 ALTER TABLE public.chain_states OWNER TO postgres;
 
 --
--- Name: edge_states; Type: TABLE; Schema: public; Owner: postgres
+-- Name: edge_states; Type: TABLE; Schema: public; Owner: admin
 --
 
 CREATE TABLE public.edge_states (
@@ -51,7 +51,7 @@ CREATE TABLE public.edge_states (
 );
 
 
-ALTER TABLE public.edge_states OWNER TO postgres;
+ALTER TABLE public.edge_states OWNER TO admin;
 
 --
 -- Name: pool_states; Type: TABLE; Schema: public; Owner: postgres
@@ -130,6 +130,7 @@ CREATE TABLE public.tokens (
     symbol character varying(255) NOT NULL,
     decimals integer NOT NULL,
     updated_at timestamp with time zone DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    created_at timestamp without time zone DEFAULT now() NOT NULL,
     CONSTRAINT tokens_decimals_check CHECK ((decimals >= 0))
 );
 
@@ -153,7 +154,7 @@ ALTER TABLE ONLY public.chain_states
 
 
 --
--- Name: edge_states edge_states_chain_id_token0_token1_pool_id_key; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: edge_states edge_states_chain_id_token0_token1_pool_id_key; Type: CONSTRAINT; Schema: public; Owner: admin
 --
 
 ALTER TABLE ONLY public.edge_states
@@ -161,7 +162,7 @@ ALTER TABLE ONLY public.edge_states
 
 
 --
--- Name: edge_states edge_states_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: edge_states edge_states_pkey; Type: CONSTRAINT; Schema: public; Owner: admin
 --
 
 ALTER TABLE ONLY public.edge_states
@@ -198,14 +199,6 @@ ALTER TABLE ONLY public.price_ticks
 
 ALTER TABLE ONLY public.ticks
     ADD CONSTRAINT ticks_pkey PRIMARY KEY (id);
-
-
---
--- Name: tokens tokens_address_chain_id_key; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.tokens
-    ADD CONSTRAINT tokens_address_chain_id_key UNIQUE (address, chain_id);
 
 
 --
