@@ -27,6 +27,8 @@ WORKDIR /bin/
 COPY --from=builder /bin/app .
 COPY --from=builder src/dumb-api/migrations ./migrations
 COPY --from=builder src/dumb-api/database.yml .
+COPY --from=builder src/dumb-api/evm_config.json .
+COPY --from=builder src/dumb-api/start_all.sh .
 
 # Install the soda cli
 RUN go install github.com/gobuffalo/pop/v6/soda@latest
