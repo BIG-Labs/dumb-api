@@ -8,8 +8,8 @@ import (
 
 	"dumb-api/config"
 	"dumb-api/internal/graph"
-	"dumb-api/internal/models"
 	"dumb-api/internal/utils"
+	"dumb-api/models"
 
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/core/types"

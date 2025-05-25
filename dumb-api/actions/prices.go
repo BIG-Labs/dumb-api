@@ -5,7 +5,7 @@ import (
 	"net/http"
 	"time"
 
-	"dumb-api/internal/models"
+	"dumb-api/models"
 
 	"github.com/gobuffalo/buffalo"
 	"github.com/gobuffalo/pop/v6"

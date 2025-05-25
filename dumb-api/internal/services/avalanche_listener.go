@@ -9,7 +9,7 @@ import (
 
 	"dumb-api/config"
 	"dumb-api/internal/graph"
-	"dumb-api/internal/models"
+	"dumb-api/models"
 
 	"github.com/ethereum/go-ethereum/core/types"
 	"github.com/ethereum/go-ethereum/ethclient"

@@ -6,8 +6,8 @@ import (
 	"time"
 
 	"dumb-api/config"
-	"dumb-api/internal/models"
 	"dumb-api/internal/services"
+	"dumb-api/models"
 
 	"github.com/gobuffalo/grift/grift"
 	"github.com/gofrs/uuid"

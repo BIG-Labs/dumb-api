@@ -9,8 +9,8 @@ import (
 
 	"dumb-api/config"
 	"dumb-api/internal/graph"
-	"dumb-api/internal/models"
 	"dumb-api/internal/utils"
+	"dumb-api/models"
 
 	"github.com/daoleno/uniswapv3-sdk/constants"
 	"github.com/daoleno/uniswapv3-sdk/entities"

@@ -3,7 +3,7 @@ package actions
 import (
 	"net/http"
 
-	"dumb-api/internal/models"
+	"dumb-api/models"
 
 	"github.com/gobuffalo/buffalo"
 	"github.com/gobuffalo/buffalo/render"
