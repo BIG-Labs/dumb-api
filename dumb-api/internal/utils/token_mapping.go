@@ -4,7 +4,7 @@ import (
 	"log"
 	"strings"
 
-	"github.com/0x7183/unifi-backend/config"
+	"dumb-api/config"
 )
 
 // GetTokenMappings returns the home and remote token addresses for a given token on a specific chain

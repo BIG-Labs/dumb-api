@@ -7,7 +7,7 @@ import (
 	"net/http"
 	"strings"
 
-	"github.com/0x7183/unifi-backend/internal/utils"
+	"dumb-api/internal/utils"
 )
 
 type CoinGeckoService struct {

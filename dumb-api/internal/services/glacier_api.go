@@ -5,20 +5,20 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/0x7183/unifi-backend/internal/utils"
+	"dumb-api/internal/utils"
 )
 
 type GlacierTokenResponse struct {
-	Address           string                 `json:"address"`
-	DeploymentDetails *DeploymentDetails     `json:"deploymentDetails"`
-	Name              string                 `json:"name"`
-	LogoAsset         *LogoAsset             `json:"logoAsset"`
-	Color             string                 `json:"color"`
-	ResourceLinks     []any        `json:"resourceLinks"`
-	ErcType           string                 `json:"ercType"`
-	Symbol            string                 `json:"symbol"`
-	Decimals          int                    `json:"decimals"`
-	PricingProviders  map[string]any `json:"pricingProviders"`
+	Address           string             `json:"address"`
+	DeploymentDetails *DeploymentDetails `json:"deploymentDetails"`
+	Name              string             `json:"name"`
+	LogoAsset         *LogoAsset         `json:"logoAsset"`
+	Color             string             `json:"color"`
+	ResourceLinks     []any              `json:"resourceLinks"`
+	ErcType           string             `json:"ercType"`
+	Symbol            string             `json:"symbol"`
+	Decimals          int                `json:"decimals"`
+	PricingProviders  map[string]any     `json:"pricingProviders"`
 }
 
 type DeploymentDetails struct {

@@ -13,3 +13,11 @@ services:
     environment:
       ENV: production
       DATABASE_URL: postgres://postgres:password@host.docker.internal:5432/avalanche_hackaton_development?sslmode=disable
+      SYNC_TOPIC: 0x1c411e9a96e071241c2f21f7726b17ae89e3cab4c78be50e062b03a9fffbbad1
+      SWAP_V3_TOPIC: 0xc42079f94a6350d7e6235f29174924f928cc2ac818eb64fed8004e115fbcca67
+      AMOUNT_IN: 1000000000000000000
+      DEFAULT_BUILDER_FEE: 100000000000000
+      FEE_TIERS: 500,3000
+      AVALANCHE_RPC_URL: https://avalanche-c-chain-rpc.publicnode.com
+      EVM_CONFIG_PATH: evm_config.json 
+      GO_ENV: development

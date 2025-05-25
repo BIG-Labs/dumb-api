@@ -5,8 +5,9 @@ import (
 	"log"
 	"time"
 
-	"github.com/0x7183/unifi-backend/config"
-	"github.com/0x7183/unifi-backend/internal/services"
+	"dumb-api/config"
+	"dumb-api/internal/services"
+
 	"github.com/gobuffalo/pop/v6"
 )
 
@@ -24,7 +25,7 @@ func main() {
 }
 
 func blockListener(handler services.EVMHandler, db *pop.Connection) {
-	lastBlock, _ := handler.LastBlock(context.Background(), db)	
+	lastBlock, _ := handler.LastBlock(context.Background(), db)
 
 	if lastBlock == 0 {
 		block, err := handler.Block(context.Background(), nil)
@@ -71,7 +72,7 @@ func blockListener(handler services.EVMHandler, db *pop.Connection) {
 			lastBlock = nextBlockNumber
 			log.Printf("Processed block %d", nextBlockNumber)
 		}
-		
+
 		blocksBehind := latestBlockNumber - lastBlock
 		if blocksBehind > 10 {
 			time.Sleep(1 * time.Millisecond)

@@ -1,4 +1,4 @@
-module github.com/0x7183/unifi-backend
+module dumb-api
 
 go 1.23.3
 

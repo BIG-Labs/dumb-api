@@ -13,14 +13,10 @@ COPY go.sum go.sum
 RUN go mod download
 
 ADD . .
-# Vendor dependencies after copying source code
-RUN go mod vendor
 RUN wget https://github.com/gobuffalo/cli/releases/download/v0.18.14/buffalo_0.18.14_Linux_x86_64.tar.gz
 RUN tar -xvzf buffalo_0.18.14_Linux_x86_64.tar.gz
 RUN mv buffalo /usr/local/bin/
-RUN buffalo build --static -o /bin/app --mod=vendor
-# Install the soda cli
-RUN go install github.com/gobuffalo/pop/v6/soda@latest
+RUN buffalo build --static -o /bin/app
 
 FROM golang:1.23-alpine AS final
 RUN apk add --no-cache bash
@@ -31,4 +27,6 @@ WORKDIR /bin/
 COPY --from=builder /bin/app .
 COPY --from=builder src/dumb-api/migrations ./migrations
 COPY --from=builder src/dumb-api/database.yml .
-COPY --from=builder /go/bin/soda /usr/local/bin/
+
+# Install the soda cli
+RUN go install github.com/gobuffalo/pop/v6/soda@latest

@@ -3,7 +3,8 @@ package actions
 import (
 	"net/http"
 
-	"github.com/0x7183/unifi-backend/internal/models"
+	"dumb-api/internal/models"
+
 	"github.com/gobuffalo/buffalo"
 	"github.com/gobuffalo/buffalo/render"
 	"github.com/gobuffalo/pop/v6"

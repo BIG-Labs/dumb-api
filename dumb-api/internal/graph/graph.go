@@ -4,8 +4,8 @@ import (
 	"math/big"
 	"sync"
 
-	"github.com/0x7183/unifi-backend/config"
-	"github.com/0x7183/unifi-backend/internal/utils"
+	"dumb-api/config"
+	"dumb-api/internal/utils"
 )
 
 // Global graph instance

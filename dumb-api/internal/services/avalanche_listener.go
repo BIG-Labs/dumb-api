@@ -6,9 +6,11 @@ import (
 	"log"
 	"math/big"
 	"time"
-	"github.com/0x7183/unifi-backend/config"
-	"github.com/0x7183/unifi-backend/internal/graph"
-	"github.com/0x7183/unifi-backend/internal/models"
+
+	"dumb-api/config"
+	"dumb-api/internal/graph"
+	"dumb-api/internal/models"
+
 	"github.com/ethereum/go-ethereum/core/types"
 	"github.com/ethereum/go-ethereum/ethclient"
 	"github.com/gobuffalo/pop/v6"
@@ -126,7 +128,7 @@ func (h *AvalancheHandler) Listen(db *pop.Connection, block *types.Block) error 
 			edge10 := graph.GetGlobalGraph().GetEdge(pool.Token1, pool.Token0, pool.Pair, h.ChainID)
 
 			if edge01 != nil {
-				edge01.UpdateEdge(*vLog , h.ChainID )
+				edge01.UpdateEdge(*vLog, h.ChainID)
 			}
 
 			if edge10 != nil {

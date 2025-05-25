@@ -5,9 +5,10 @@ import (
 	"log"
 	"time"
 
-	"github.com/0x7183/unifi-backend/config"
-	"github.com/0x7183/unifi-backend/internal/models"
-	"github.com/0x7183/unifi-backend/internal/services"
+	"dumb-api/config"
+	"dumb-api/internal/models"
+	"dumb-api/internal/services"
+
 	"github.com/gobuffalo/grift/grift"
 	"github.com/gofrs/uuid"
 )

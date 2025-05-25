@@ -4,14 +4,16 @@ import (
 	"encoding/json"
 	"log"
 	"math/big"
-	"github.com/0x7183/unifi-backend/internal/graph"
+
+	"dumb-api/internal/graph"
+
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/core/types"
 )
 
 type BridgeEdge struct {
-	Token0       common.Address
-	Token1       common.Address
+	Token0 common.Address
+	Token1 common.Address
 }
 
 func (e *BridgeEdge) UpdateEdge(pendingLog types.Log, chainID string) {
@@ -29,11 +31,11 @@ func (e *BridgeEdge) ComputePriceImpact(amountIn *big.Int) *big.Float {
 
 func (e *BridgeEdge) Export() []string {
 	data := struct {
-		Token0     string `json:"token0"`
-		Token1     string `json:"token1"`
+		Token0 string `json:"token0"`
+		Token1 string `json:"token1"`
 	}{
-		Token0:     e.Token0.String(),
-		Token1:     e.Token1.String(),	
+		Token0: e.Token0.String(),
+		Token1: e.Token1.String(),
 	}
 
 	jsonData, err := json.Marshal(data)
@@ -47,8 +49,8 @@ func (e *BridgeEdge) Export() []string {
 
 func (e *BridgeEdge) Copy() graph.Edge {
 	return &BridgeEdge{
-		Token0:     e.Token0,
-		Token1:     e.Token1,
+		Token0: e.Token0,
+		Token1: e.Token1,
 	}
 }
 

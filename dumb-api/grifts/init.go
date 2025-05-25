@@ -3,7 +3,7 @@ package grifts
 import (
 	"log"
 
-	"github.com/0x7183/unifi-backend/actions"
+	"dumb-api/actions"
 
 	"github.com/gobuffalo/buffalo"
 )

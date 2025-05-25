@@ -6,20 +6,21 @@ import (
 	"math/big"
 	"time"
 
-	"github.com/0x7183/unifi-backend/config"
-	"github.com/0x7183/unifi-backend/internal/graph"
-	"github.com/0x7183/unifi-backend/internal/models"
-	"github.com/0x7183/unifi-backend/internal/utils"
+	"dumb-api/config"
+	"dumb-api/internal/graph"
+	"dumb-api/internal/models"
+	"dumb-api/internal/utils"
+
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/core/types"
 )
 
 type EVMEdgeV2 struct {
-	Token0       common.Address
-	Token1       common.Address
-	Reserve0     *big.Int
-	Reserve1     *big.Int
-	ZeroForOne   bool
+	Token0     common.Address
+	Token1     common.Address
+	Reserve0   *big.Int
+	Reserve1   *big.Int
+	ZeroForOne bool
 }
 
 func (e *EVMEdgeV2) UpdateEdge(pendingLog types.Log, chainID string) {
@@ -48,18 +49,18 @@ func (e *EVMEdgeV2) UpdateEdge(pendingLog types.Log, chainID string) {
 	}
 
 	priceTick := &models.PriceTick{
-		TokenIn:     e.Token0.String(),
-		TokenOut:    e.Token1.String(),
-		Chain:       chainID,
-		CreatedAt:   time.Now(),
-		UpdatedAt:   time.Now(),
+		TokenIn:   e.Token0.String(),
+		TokenOut:  e.Token1.String(),
+		Chain:     chainID,
+		CreatedAt: time.Now(),
+		UpdatedAt: time.Now(),
 	}
 
 	err := models.DB.Create(priceTick)
 	if err != nil {
 		log.Printf("[DELPHI] Err creating price tick V2: %v", err)
 	}
-	
+
 }
 
 func (e *EVMEdgeV2) ComputeExactAmountOut(amountIn *big.Int) *big.Int {

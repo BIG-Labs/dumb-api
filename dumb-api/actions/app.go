@@ -3,7 +3,8 @@ package actions
 import (
 	"log"
 
-	"github.com/0x7183/unifi-backend/internal/graph"
+	"dumb-api/internal/graph"
+
 	"github.com/gobuffalo/buffalo"
 	"github.com/gobuffalo/envy"
 	"github.com/gobuffalo/pop/v6"

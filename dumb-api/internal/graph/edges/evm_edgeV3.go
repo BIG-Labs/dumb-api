@@ -7,10 +7,11 @@ import (
 	"math/big"
 	"time"
 
-	"github.com/0x7183/unifi-backend/config"
-	"github.com/0x7183/unifi-backend/internal/graph"
-	"github.com/0x7183/unifi-backend/internal/models"
-	"github.com/0x7183/unifi-backend/internal/utils"
+	"dumb-api/config"
+	"dumb-api/internal/graph"
+	"dumb-api/internal/models"
+	"dumb-api/internal/utils"
+
 	"github.com/daoleno/uniswapv3-sdk/constants"
 	"github.com/daoleno/uniswapv3-sdk/entities"
 	uniswapv3utils "github.com/daoleno/uniswapv3-sdk/utils"

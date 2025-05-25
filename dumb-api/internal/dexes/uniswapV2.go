@@ -3,9 +3,11 @@ package dexes
 import (
 	"log"
 	"math/big"
-	"github.com/0x7183/unifi-backend/internal/contracts"
-	"github.com/0x7183/unifi-backend/internal/graph"
-	"github.com/0x7183/unifi-backend/internal/graph/edges"
+
+	"dumb-api/internal/contracts"
+	"dumb-api/internal/graph"
+	"dumb-api/internal/graph/edges"
+
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/ethclient"
 )
@@ -51,12 +53,12 @@ func InitUniswapV2(client *ethclient.Client, chain string, factories []string, t
 				createUniswapV2Edges(&edges, token1, token0, pair, chain, edge10)
 
 				pool := &graph.Pool{
-                    Token0:  token0.String(),
-                    Token1:  token1.String(),
-                    Pair:    pair.String(),
-                    Factory: factoryAddr,
-                }
-                pools[pair.String()] = pool
+					Token0:  token0.String(),
+					Token1:  token1.String(),
+					Pair:    pair.String(),
+					Factory: factoryAddr,
+				}
+				pools[pair.String()] = pool
 
 			}
 		}

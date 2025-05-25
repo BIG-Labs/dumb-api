@@ -3,11 +3,12 @@ package main
 import (
 	"log"
 
-	"github.com/0x7183/unifi-backend/actions"
-	"github.com/0x7183/unifi-backend/config"
-	"github.com/0x7183/unifi-backend/internal/dexes"
-	"github.com/0x7183/unifi-backend/internal/graph"
-	"github.com/0x7183/unifi-backend/internal/graph/edges"
+	"dumb-api/actions"
+	"dumb-api/config"
+	"dumb-api/internal/dexes"
+	"dumb-api/internal/graph"
+	"dumb-api/internal/graph/edges"
+
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/ethclient"
 )

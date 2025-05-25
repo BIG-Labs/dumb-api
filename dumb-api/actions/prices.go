@@ -5,7 +5,8 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/0x7183/unifi-backend/internal/models"
+	"dumb-api/internal/models"
+
 	"github.com/gobuffalo/buffalo"
 	"github.com/gobuffalo/pop/v6"
 )
@@ -16,7 +17,7 @@ type Candlestick struct {
 	High  float64
 	Low   float64
 	Time  time.Time
-}	
+}
 
 type Candlesticks struct {
 	OneMinute   []Candlestick
@@ -30,15 +31,13 @@ type Group struct {
 	Ticks []models.PriceTick
 }
 
-
-
 func GetPriceData(c buffalo.Context) error {
-	
+
 	tokenIn := c.Param("tokenIn")
 	tokenOut := c.Param("tokenOut")
 
 	var candlesticks Candlesticks
-	
+
 	tx := c.Value("tx").(*pop.Connection)
 	var results []models.PriceTick
 	query := tx.Where("token_in = ? AND token_out = ?", tokenIn, tokenOut).Order("created_at asc")
@@ -54,7 +53,6 @@ func GetPriceData(c buffalo.Context) error {
 	return c.Render(http.StatusOK, r.JSON(candlesticks))
 
 }
-
 
 func generateAllCandlesticks(results []models.PriceTick) (Candlesticks, error) {
 	var candlesticks Candlesticks
