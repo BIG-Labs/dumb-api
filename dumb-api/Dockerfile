@@ -1,6 +1,6 @@
 # This is a multi-stage Dockerfile and requires >= Docker 17.05
 # https://docs.docker.com/engine/userguide/eng-image/multistage-build/
-FROM golang:1.22 AS builder
+FROM golang:1.23 AS builder
 
 RUN mkdir -p /src/dumb-api
 WORKDIR /src/dumb-api
@@ -20,7 +20,7 @@ RUN buffalo build --static -o /bin/app
 # Install the soda cli
 RUN go install github.com/gobuffalo/pop/v6/soda@latest
 
-FROM golang:1.22-alpine as final
+FROM golang:1.23-alpine as final
 RUN apk add --no-cache bash
 RUN apk add --no-cache ca-certificates
 
