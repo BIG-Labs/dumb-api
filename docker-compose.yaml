@@ -9,7 +9,7 @@ services:
   dumb-api:
     container_name: dumb-api
     build: ./dumb-api
-    command: bash -c "./app"
+    command: bash -c "./start_all.sh"
     environment:
       ENV: production
       DATABASE_URL: postgres://postgres:password@host.docker.internal:5432/avalanche_hackaton_development?sslmode=disable
