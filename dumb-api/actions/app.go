@@ -41,6 +41,7 @@ func App() *AppContext {
 			graph: g,
 		}
 
+		appInstance.GET("/api/v1/prices", GetPriceData)
 		appInstance.POST("/api/v1/path", FindBestPath)
 		appInstance.GET("/api/v1/tokens", GetTokens)
 	}

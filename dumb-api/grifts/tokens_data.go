@@ -27,6 +27,28 @@ var _ = grift.Namespace("tokens", func() {
 			for _, tokenConfig := range chainConfig.Tokens {
 				log.Printf("Processing token: %s (%s)", tokenConfig.Symbol, tokenConfig.Address)
 
+				if chainName == "COQNET" && tokenConfig.Symbol == "USDC" {
+					token := models.Token{
+						ID:        uuid.Must(uuid.NewV4()),
+						Address:   tokenConfig.Address,
+						ChainID:   fmt.Sprintf("%d", chainConfig.ChainId),
+						Icon:      "",
+						Name:      tokenConfig.Name,
+						Symbol:    tokenConfig.Symbol,
+						Price:     1.0,
+						Decimals:  6,
+						UpdatedAt: now,
+					}
+
+					err := models.DB.Create(&token)
+					if err != nil {
+						log.Printf("Failed to create token record %s: %v", tokenConfig.Address, err)
+						continue
+					}
+					log.Printf("Successfully created new token price record: %s (%s) with price %v at %v", token.Symbol, token.Name, token.Price, now)
+					continue
+				}
+
 				tokenInfo, err := glacierService.GetTokenInfo(chainConfig.ChainId, tokenConfig.Address)
 				if err != nil {
 					log.Printf("Failed to fetch token info for %s: %v", tokenConfig.Address, err)
